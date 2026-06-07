@@ -1,394 +1,327 @@
+# Bug Reports
 
-# Bug Reports — Báo cáo lỗi
-
-| Thông tin | |
+| Information | Details |
 |---|---|
-| **Nhóm** | `<!Group 18>` |
-| **Ngày báo cáo** | `27/05/2026` |
-| **Hệ thống** | https://stqa.rbc.vn |
-| **Tổng số bug** | 8 |
+| **Group** | `<!Group 18>` |
+| **Report Date** | `27/05/2026` |
+| **System** | https://stqa.rbc.vn |
+| **Total Bugs** | 8 |
+
+## Environment
+
+- **Browser:** Chrome
+- **Operating System:** Windows 11
+- **Interface Language:** Vietnamese / English depending on the test case
 
 ---
 
+## BUG-01 — Incorrect error message shown when a suspended member borrows a book
 
-## BUG-01
-
-| Thuộc tính | Chi tiết |
+| Attribute | Details |
 |---|---|
-| **Mã lỗi** | BUG-01 |
-| **TC liên quan** | TC-17 |
-| **REQ liên quan** | REQ-04 |
-| **Mức độ** | Medium |
-| **Người phát hiện** | Phạm Duy Đức Tâm |
-| **Ngày phát hiện** | 27/05/2026 |
-| **Trạng thái** | Open |
+| **Bug ID** | BUG-01 |
+| **Related TC** | TC-17 |
+| **Related REQ** | REQ-04 |
+| **Severity** | Medium |
+| **Detected By** | Phạm Duy Đức Tâm |
+| **Detected Date** | 27/05/2026 |
+| **Status** | Open |
 
-**Tiêu đề:**  
-Thông báo lỗi sai lý do khi thành viên tạm ngưng mượn sách
+**Precondition:**  
+Log in with the suspended member account `cu.le@email.com / password123`.
 
-**Môi trường:**
-- Trình duyệt: Chrome
-- Hệ điều hành: Windows 11
-- Ngôn ngữ giao diện: Tiếng Việt / English tùy TC
+**Steps to Reproduce:**
+1. Log in using the account `cu.le@email.com`.
+2. Go to the book list.
+3. Select a book with the Available status.
+4. Click the borrow book button.
 
-**Điều kiện tiên quyết:**  
-Đăng nhập bằng tài khoản thành viên tạm ngưng `cu.le@email.com / password123`.
+**Expected Result:**  
+The system should reject the borrowing request and display the correct reason: the member is suspended and cannot borrow books.
 
-**Bước tái hiện:**
-1. Đăng nhập bằng tài khoản `cu.le@email.com`.
-2. Vào danh sách sách.
-3. Chọn một sách có trạng thái Có sẵn.
-4. Nhấn nút mượn sách.
+**Actual Result:**  
+The system rejects the borrowing request but displays: `Thành viên đã hết hạn. Không thể mượn sách.`
 
-**Kết quả mong đợi:**  
-Hệ thống từ chối mượn sách và hiển thị đúng lý do: thành viên đang bị tạm ngưng, không thể mượn sách.
+**Impact:**  
+Users and librarians may misunderstand the rejection reason, causing confusion between suspended status and expired membership.
 
-**Kết quả thực tế:**  
-Hệ thống từ chối mượn sách nhưng hiển thị: `Thành viên đã hết hạn. Không thể mượn sách.`
-
-**Tác động:**  
-Người dùng và thủ thư bị hiểu sai lý do từ chối, gây nhầm lẫn giữa trạng thái tạm ngưng và hết hạn.
-
-**Minh chứng:**  
+**Evidence:**  
 `Bug01.jpg`
 
-**Đề xuất xử lý:**  
-Kiểm tra lại nhánh xử lý trạng thái `suspended`, đảm bảo thông báo tạm ngưng và hết hạn khác nhau.
+**Suggested Fix:**  
+Review the handling logic for the `suspended` status and ensure that suspended and expired membership messages are different.
 
 ---
 
+## BUG-02 — System allows a member to borrow more than the maximum limit of 3 books
 
-## BUG-02
-
-| Thuộc tính | Chi tiết |
+| Attribute | Details |
 |---|---|
-| **Mã lỗi** | BUG-02 |
-| **TC liên quan** | TC-19 |
-| **REQ liên quan** | REQ-04 |
-| **Mức độ** | High |
-| **Người phát hiện** | Trần Quang Thành |
-| **Ngày phát hiện** | 27/05/2026 |
-| **Trạng thái** | Open |
+| **Bug ID** | BUG-02 |
+| **Related TC** | TC-19 |
+| **Related REQ** | REQ-04 |
+| **Severity** | High |
+| **Detected By** | Trần Quang Thành |
+| **Detected Date** | 27/05/2026 |
+| **Status** | Open |
 
-**Tiêu đề:**  
-Hệ thống cho phép thành viên mượn vượt quá giới hạn tối đa 3 sách
+**Precondition:**  
+Log in with the member account `ba.nguyen@email.com / password123`.
 
-**Môi trường:**
-- Trình duyệt: Chrome
-- Hệ điều hành: Windows 11
-- Ngôn ngữ giao diện: Tiếng Việt / English tùy TC
+**Steps to Reproduce:**
+1. Log in using `ba.nguyen@email.com`.
+2. Go to the book list.
+3. Borrow several books that have the Available status.
+4. Go to the Borrow / Return tab.
+5. Observe the number of active borrowing records.
 
-**Điều kiện tiên quyết:**  
-Đăng nhập bằng tài khoản thành viên `ba.nguyen@email.com / password123`.
+**Expected Result:**  
+When the member has already borrowed 3 books, the system must reject the 4th borrowing request.
 
-**Bước tái hiện:**
-1. Đăng nhập bằng `ba.nguyen@email.com`.
-2. Vào danh sách sách.
-3. Mượn liên tiếp các sách còn trạng thái Có sẵn.
-4. Vào tab Mượn / Trả.
-5. Quan sát số phiếu đang mượn.
+**Actual Result:**  
+The system still allows Nguyễn Học Bá to borrow 4 books at the same time: BR006, BR007, BR008, BR012.
 
-**Kết quả mong đợi:**  
-Khi thành viên đã mượn đủ 3 sách, hệ thống phải từ chối mượn sách thứ 4.
+**Impact:**  
+This violates a core business rule and prevents the system from correctly controlling the maximum number of books per member.
 
-**Kết quả thực tế:**  
-Hệ thống vẫn cho Nguyễn Học Bá mượn 4 sách cùng lúc: BR006, BR007, BR008, BR012.
-
-**Tác động:**  
-Vi phạm quy tắc nghiệp vụ chính, làm hệ thống không kiểm soát được giới hạn số sách mỗi thành viên.
-
-**Minh chứng:**  
+**Evidence:**  
 `Bug02.jpg`
 
-**Đề xuất xử lý:**  
-Trước khi tạo phiếu mượn, đếm số phiếu trạng thái đang mượn của member; nếu `>= 3` thì chặn.
+**Suggested Fix:**  
+Before creating a borrowing record, count the member's active borrowing records; if the number is `>= 3`, block the request.
 
 ---
 
+## BUG-03 — No overdue warning is displayed when returning an overdue book
 
-## BUG-03
-
-| Thuộc tính | Chi tiết |
+| Attribute | Details |
 |---|---|
-| **Mã lỗi** | BUG-03 |
-| **TC liên quan** | TC-23 |
-| **REQ liên quan** | REQ-05 |
-| **Mức độ** | Medium |
-| **Người phát hiện** | Lê Vân |
-| **Ngày phát hiện** | 27/05/2026 |
-| **Trạng thái** | Open |
+| **Bug ID** | BUG-03 |
+| **Related TC** | TC-23 |
+| **Related REQ** | REQ-05 |
+| **Severity** | Medium |
+| **Detected By** | Lê Vân |
+| **Detected Date** | 27/05/2026 |
+| **Status** | Open |
 
-**Tiêu đề:**  
-Trả sách quá hạn nhưng hệ thống không hiển thị cảnh báo quá hạn
+**Precondition:**  
+Log in using `ba.nguyen@email.com / password123`; borrowing record BR001 is overdue.
 
-**Môi trường:**
-- Trình duyệt: Chrome
-- Hệ điều hành: Windows 11
-- Ngôn ngữ giao diện: Tiếng Việt / English tùy TC
+**Steps to Reproduce:**
+1. Log in using `ba.nguyen@email.com`.
+2. Go to the Borrow / Return tab.
+3. Find borrowing record BR001.
+4. Click Return Book.
+5. Observe the notification.
 
-**Điều kiện tiên quyết:**  
-Đăng nhập bằng `ba.nguyen@email.com / password123`, phiếu BR001 quá hạn.
+**Expected Result:**  
+The system should return the book successfully and display an overdue warning because the return date is later than the due date.
 
-**Bước tái hiện:**
-1. Đăng nhập bằng `ba.nguyen@email.com`.
-2. Vào tab Mượn / Trả.
-3. Tìm phiếu BR001.
-4. Nhấn Trả sách.
-5. Quan sát thông báo.
+**Actual Result:**  
+The system only displays `Trả sách thành công.` and does not show any overdue warning.
 
-**Kết quả mong đợi:**  
-Hệ thống trả sách thành công và hiển thị cảnh báo quá hạn vì ngày trả sau hạn trả.
+**Impact:**  
+Members/librarians are not informed that the return transaction is overdue, making the overdue warning ineffective.
 
-**Kết quả thực tế:**  
-Hệ thống chỉ hiển thị `Trả sách thành công.`, không có cảnh báo quá hạn.
-
-**Tác động:**  
-Thành viên/thủ thư không biết giao dịch trả sách bị quá hạn, làm mất ý nghĩa cảnh báo quá hạn.
-
-**Minh chứng:**  
+**Evidence:**  
 `Bug03.jpg`
 
-**Đề xuất xử lý:**  
-Khi xử lý trả sách, kiểm tra `returnDate > dueDate`; nếu đúng, hiển thị cảnh báo quá hạn.
+**Suggested Fix:**  
+When processing book returns, check whether `returnDate > dueDate`; if true, display an overdue warning.
 
 ---
 
+## BUG-04 — System rejects a valid email when adding a new member
 
-## BUG-04
-
-| Thuộc tính | Chi tiết |
+| Attribute | Details |
 |---|---|
-| **Mã lỗi** | BUG-04 |
-| **TC liên quan** | TC-26 |
-| **REQ liên quan** | REQ-07 |
-| **Mức độ** | Medium |
-| **Người phát hiện** | Phạm Duy Đức Tâm |
-| **Ngày phát hiện** | 27/05/2026 |
-| **Trạng thái** | Open |
+| **Bug ID** | BUG-04 |
+| **Related TC** | TC-26 |
+| **Related REQ** | REQ-07 |
+| **Severity** | Medium |
+| **Detected By** | Phạm Duy Đức Tâm |
+| **Detected Date** | 27/05/2026 |
+| **Status** | Open |
 
-**Tiêu đề:**  
-Hệ thống từ chối email hợp lệ khi thêm thành viên mới
+**Precondition:**  
+Log in with the librarian account `librarian@library.com / admin123`.
 
-**Môi trường:**
-- Trình duyệt: Chrome
-- Hệ điều hành: Windows 11
-- Ngôn ngữ giao diện: Tiếng Việt / English tùy TC
+**Steps to Reproduce:**
+1. Log in as a librarian.
+2. Go to the Members tab.
+3. Click Add Member.
+4. Enter the full name `Thành thông minh`.
+5. Enter the email `thanh.khong@email.com`.
+6. Enter the phone number `0972316494`.
+7. Click Add Member.
 
-**Điều kiện tiên quyết:**  
-Đăng nhập bằng thủ thư `librarian@library.com / admin123`.
+**Expected Result:**  
+The system should accept the valid email, create the new member, and display the member in the list.
 
-**Bước tái hiện:**
-1. Đăng nhập thủ thư.
-2. Vào tab Thành viên.
-3. Nhấn thêm thành viên.
-4. Nhập họ tên `Thành thông minh`.
-5. Nhập email `thanh.khong@email.com`.
-6. Nhập SĐT `0972316494`.
-7. Nhấn Thêm thành viên.
+**Actual Result:**  
+The system displays the error `Email không hợp lệ.` and does not allow the member to be added.
 
-**Kết quả mong đợi:**  
-Hệ thống chấp nhận email hợp lệ, tạo thành viên mới và hiển thị trong danh sách.
+**Impact:**  
+The librarian cannot add a new member even though the email is in a valid format.
 
-**Kết quả thực tế:**  
-Hệ thống hiển thị lỗi `Email không hợp lệ.` và không cho thêm thành viên.
-
-**Tác động:**  
-Thủ thư không thể thêm thành viên mới dù nhập email đúng định dạng.
-
-**Minh chứng:**  
+**Evidence:**  
 `Bug04.jpg`
 
-**Đề xuất xử lý:**  
-Kiểm tra lại regex/logic validate email; email dạng `user@domain.ext` phải được chấp nhận.
+**Suggested Fix:**  
+Review the email validation regex/logic; emails in the `user@domain.ext` format must be accepted.
 
 ---
 
+## BUG-05 — System allows adding a member with an invalid email format
 
-## BUG-05
-
-| Thuộc tính | Chi tiết |
+| Attribute | Details |
 |---|---|
-| **Mã lỗi** | BUG-05 |
-| **TC liên quan** | TC-27 |
-| **REQ liên quan** | REQ-07 |
-| **Mức độ** | Medium |
-| **Người phát hiện** | Lê Vân |
-| **Ngày phát hiện** | 27/05/2026 |
-| **Trạng thái** | Open |
+| **Bug ID** | BUG-05 |
+| **Related TC** | TC-27 |
+| **Related REQ** | REQ-07 |
+| **Severity** | Medium |
+| **Detected By** | Lê Vân |
+| **Detected Date** | 27/05/2026 |
+| **Status** | Open |
 
-**Tiêu đề:**  
-Hệ thống cho phép thêm thành viên với email sai định dạng
+**Precondition:**  
+Log in as a librarian.
 
-**Môi trường:**
-- Trình duyệt: Chrome
-- Hệ điều hành: Windows 11
-- Ngôn ngữ giao diện: Tiếng Việt / English tùy TC
+**Steps to Reproduce:**
+1. Log in as a librarian.
+2. Go to the Members tab.
+3. Click Add Member.
+4. Enter an invalid email format such as `user@domain`.
+5. Enter the remaining valid information.
+6. Click Add Member.
 
-**Điều kiện tiên quyết:**  
-Đăng nhập bằng thủ thư.
+**Expected Result:**  
+The system should reject the member creation request and display an invalid email error.
 
-**Bước tái hiện:**
-1. Đăng nhập thủ thư.
-2. Vào tab Thành viên.
-3. Nhấn thêm thành viên.
-4. Nhập email sai định dạng `user@domain`.
-5. Nhập dữ liệu còn lại hợp lệ.
-6. Nhấn Thêm thành viên.
+**Actual Result:**  
+The system still creates a new member with an invalid email format such as `user@domain` or `user1@domain`.
 
-**Kết quả mong đợi:**  
-Hệ thống từ chối tạo thành viên và hiển thị lỗi email không hợp lệ.
+**Impact:**  
+Member data may contain invalid email formats, which can cause issues during searching or later processing.
 
-**Kết quả thực tế:**  
-Hệ thống vẫn tạo thành viên mới với email sai định dạng `user@domain` hoặc `user1@domain`.
-
-**Tác động:**  
-Dữ liệu thành viên có thể bị sai định dạng, gây lỗi khi tra cứu/xử lý về sau.
-
-**Minh chứng:**  
+**Evidence:**  
 `Bug05.jpg`
 
-**Đề xuất xử lý:**  
-Cập nhật validate email để chỉ chấp nhận định dạng đầy đủ `user@domain.ext`.
+**Suggested Fix:**  
+Update the email validation so that only complete email formats such as `user@domain.ext` are accepted.
 
 ---
 
+## BUG-06 — Member can look up borrowing records of another member
 
-## BUG-06
-
-| Thuộc tính | Chi tiết |
+| Attribute | Details |
 |---|---|
-| **Mã lỗi** | BUG-06 |
-| **TC liên quan** | TC-32 |
-| **REQ liên quan** | REQ-08 |
-| **Mức độ** | High |
-| **Người phát hiện** | Trần Quang Thành |
-| **Ngày phát hiện** | 27/05/2026 |
-| **Trạng thái** | Open |
+| **Bug ID** | BUG-06 |
+| **Related TC** | TC-32 |
+| **Related REQ** | REQ-08 |
+| **Severity** | High |
+| **Detected By** | Trần Quang Thành |
+| **Detected Date** | 27/05/2026 |
+| **Status** | Open |
 
-**Tiêu đề:**  
-Thành viên có thể tra cứu phiếu mượn của thành viên khác
+**Precondition:**  
+Log in with the member account `dam.tran@email.com / password123`.
 
-**Môi trường:**
-- Trình duyệt: Chrome
-- Hệ điều hành: Windows 11
-- Ngôn ngữ giao diện: Tiếng Việt / English tùy TC
+**Steps to Reproduce:**
+1. Log in using `dam.tran@email.com`.
+2. Go to the Borrow / Return tab.
+3. Select borrowing record lookup.
+4. Enter another member ID `MEM002`.
+5. Click Search.
 
-**Điều kiện tiên quyết:**  
-Đăng nhập bằng tài khoản thành viên `dam.tran@email.com / password123`.
+**Expected Result:**  
+A member should only be able to view their own borrowing records; the system must reject the request or not display another member's data.
 
-**Bước tái hiện:**
-1. Đăng nhập bằng `dam.tran@email.com`.
-2. Vào tab Mượn / Trả.
-3. Chọn Tra cứu phiếu mượn.
-4. Nhập mã thành viên khác `MEM002`.
-5. Nhấn Tra cứu.
+**Actual Result:**  
+Trần Dựa Dẫm can still view Nguyễn Học Bá's borrowing records, including BR001 and BR004.
 
-**Kết quả mong đợi:**  
-Thành viên chỉ được xem phiếu mượn của chính mình; hệ thống phải từ chối hoặc không hiển thị dữ liệu người khác.
+**Impact:**  
+This violates access control and user data privacy.
 
-**Kết quả thực tế:**  
-Trần Dựa Dẫm vẫn xem được phiếu của Nguyễn Học Bá gồm BR001 và BR004.
-
-**Tác động:**  
-Vi phạm phân quyền và quyền riêng tư dữ liệu người dùng.
-
-**Minh chứng:**  
+**Evidence:**  
 `Bug06.jpg`
 
-**Đề xuất xử lý:**  
-Khi role là Member, giới hạn truy vấn theo memberId của tài khoản đang đăng nhập; không cho nhập mã người khác.
+**Suggested Fix:**  
+When the role is Member, limit queries to the `memberId` of the currently logged-in account and do not allow searching for another member ID.
 
 ---
 
+## BUG-07 — Search does not handle leading whitespace in keywords
 
-## BUG-07
-
-| Thuộc tính | Chi tiết |
+| Attribute | Details |
 |---|---|
-| **Mã lỗi** | BUG-07 |
-| **TC liên quan** | TC-38 |
-| **REQ liên quan** | REQ-03 |
-| **Mức độ** | Low |
-| **Người phát hiện** | Phạm Duy Đức Tâm |
-| **Ngày phát hiện** | 27/05/2026 |
-| **Trạng thái** | Open |
+| **Bug ID** | BUG-07 |
+| **Related TC** | TC-38 |
+| **Related REQ** | REQ-03 |
+| **Severity** | Low |
+| **Detected By** | Phạm Duy Đức Tâm |
+| **Detected Date** | 27/05/2026 |
+| **Status** | Open |
 
-**Tiêu đề:**  
-Tìm kiếm không xử lý khoảng trắng thừa ở đầu từ khóa
+**Precondition:**  
+Log in with a member account.
 
-**Môi trường:**
-- Trình duyệt: Chrome
-- Hệ điều hành: Windows 11
-- Ngôn ngữ giao diện: Tiếng Việt / English tùy TC
+**Steps to Reproduce:**
+1. Log in as a member.
+2. Go to the Books tab.
+3. Enter a keyword with leading whitespace, for example ` NGUYỄN MINH ĐỨC`.
+4. Observe the search result.
 
-**Điều kiện tiên quyết:**  
-Đăng nhập bằng tài khoản thành viên.
+**Expected Result:**  
+The system should ignore unnecessary whitespace and still display matching books.
 
-**Bước tái hiện:**
-1. Đăng nhập thành viên.
-2. Vào tab Sách.
-3. Nhập từ khóa có khoảng trắng đầu, ví dụ ` NGUYỄN MINH ĐỨC`.
-4. Quan sát kết quả.
+**Actual Result:**  
+The system displays `Không tìm thấy sách nào.`
 
-**Kết quả mong đợi:**  
-Hệ thống nên bỏ qua khoảng trắng thừa và vẫn hiển thị các sách phù hợp.
+**Impact:**  
+Users may fail to find books if they accidentally enter extra whitespace.
 
-**Kết quả thực tế:**  
-Hệ thống hiển thị `Không tìm thấy sách nào.`
-
-**Tác động:**  
-Người dùng dễ không tìm thấy sách nếu vô tình nhập thừa khoảng trắng.
-
-**Minh chứng:**  
+**Evidence:**  
 `Bug07.jpg`
 
-**Đề xuất xử lý:**  
-Trim từ khóa tìm kiếm trước khi so sánh.
+**Suggested Fix:**  
+Trim the search keyword before comparing it with book data.
 
 ---
 
+## BUG-08 — English interface still displays category names in Vietnamese
 
-## BUG-08
-
-| Thuộc tính | Chi tiết |
+| Attribute | Details |
 |---|---|
-| **Mã lỗi** | BUG-08 |
-| **TC liên quan** | TC-35 |
-| **REQ liên quan** | General UI / Language Switching |
-| **Mức độ** | Low |
-| **Người phát hiện** | Phạm Duy Đức Tâm |
-| **Ngày phát hiện** | 27/05/2026 |
-| **Trạng thái** | Open |
+| **Bug ID** | BUG-08 |
+| **Related TC** | TC-35 |
+| **Related REQ** | General UI / Language Switching |
+| **Severity** | Low |
+| **Detected By** | Phạm Duy Đức Tâm |
+| **Detected Date** | 27/05/2026 |
+| **Status** | Open |
 
-**Tiêu đề:**  
-Giao diện tiếng Anh vẫn hiển thị danh mục thể loại bằng tiếng Việt
+**Precondition:**  
+The user is already logged in to the system.
 
-**Môi trường:**
-- Trình duyệt: Chrome
-- Hệ điều hành: Windows 11
-- Ngôn ngữ giao diện: Tiếng Việt / English tùy TC
+**Steps to Reproduce:**
+1. Log in using any account.
+2. Click the EN button in the top-right corner.
+3. Observe the Available categories line under the category filter.
 
-**Điều kiện tiên quyết:**  
-Đã đăng nhập vào hệ thống.
+**Expected Result:**  
+When English is selected, all interface labels and category names should be displayed in English.
 
-**Bước tái hiện:**
-1. Đăng nhập bằng tài khoản bất kỳ.
-2. Nhấn nút EN ở góc trên bên phải.
-3. Quan sát dòng Available categories dưới ô lọc thể loại.
+**Actual Result:**  
+The Available categories line still displays: `Công nghệ, Giáo dục, Kinh tế, Kỹ năng mềm, Quản trị, Văn học`.
 
-**Kết quả mong đợi:**  
-Khi chọn tiếng Anh, toàn bộ nhãn giao diện và danh mục thể loại phải hiển thị bằng tiếng Anh.
+**Impact:**  
+The bilingual interface is inconsistent, and the English user experience is incomplete.
 
-**Kết quả thực tế:**  
-Dòng Available categories vẫn hiển thị: `Công nghệ, Giáo dục, Kinh tế, Kỹ năng mềm, Quản trị, Văn học`.
+**Evidence:**  
+`Bug8.jpg`
 
-**Tác động:**  
-Giao diện song ngữ không nhất quán, trải nghiệm tiếng Anh chưa hoàn chỉnh.
-
-**Minh chứng:**  
-`Bug08.jpg`
-
-**Đề xuất xử lý:**  
-Bổ sung bản dịch tiếng Anh cho danh mục thể loại và cập nhật theo ngôn ngữ hiện tại.
+**Suggested Fix:**  
+Add English translations for category names and update them according to the current interface language.
 
 ---

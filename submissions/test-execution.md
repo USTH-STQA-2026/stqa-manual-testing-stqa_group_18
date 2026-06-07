@@ -1,82 +1,81 @@
+# Test Execution Results
 
-# Test Execution — Kết quả thực thi kiểm thử
-
-| Thông tin | |
+| Information | |
 |---|---|
-| **Nhóm** | `<Group 18>` |
-| **Ngày thực thi** | `27/05/2026` |
-| **Trình duyệt** | Chrome |
-| **Hệ điều hành** | Windows 11 |
-| **Hệ thống** | https://stqa.rbc.vn |
+| **Group** | `<Group 18>` |
+| **Execution Date** | `27/05/2026` |
+| **Browser** | Chrome |
+| **Operating System** | Windows 11 |
+| **System** | https://stqa.rbc.vn |
 
 ---
 
-## 1. Kết quả chi tiết
+## 1. Detailed Results
 
-| Mã TC | Nhóm chức năng | Kết quả mong đợi tóm tắt | Kết quả thực tế | Kết luận | Minh chứng | Bug |
+| TC ID | Feature Group | Expected Result Summary | Actual Result | Status | Evidence | Bug |
 |---|---|---|---|---|---|---|
-| TC-01 | Đăng nhập | Chuyển sang trang chính, AppBar hiển thị Nguyễn Thủ Thư (Thủ thư). | Đăng nhập thủ thư thành công. AppBar hiển thị Nguyễn Thủ Thư (Thủ thư). | Pass |  | - |
-| TC-02 | Đăng nhập | Chuyển sang trang chính, AppBar hiển thị Nguyễn Học Bá (Thành viên). | Đăng nhập thành viên thành công. AppBar hiển thị Nguyễn Học Bá (Thành viên). | Pass |  | - |
-| TC-03 | Đăng nhập | Hiển thị lỗi Không tìm thấy thành viên. | Hệ thống hiển thị thông báo Không tìm thấy thành viên. | Pass |  | - |
-| TC-04 | Đăng nhập | Hiển thị lỗi Mật khẩu không đúng. | Hệ thống hiển thị thông báo Mật khẩu không đúng. | Pass |  | - |
-| TC-05 | Đăng nhập | Hiển thị lỗi Vui lòng nhập email và mật khẩu. | Hệ thống hiển thị thông báo Vui lòng nhập email và mật khẩu. | Pass |  | - |
-| TC-06 | Danh sách sách | BOOK001 hiển thị tên sách, tác giả, thể loại, năm xuất bản và trạng thái. | Thủ thư xem được danh sách sách; BOOK001 hiển thị đủ tên, tác giả, thể loại, năm và trạng thái Có sẵn. | Pass | | - |
-| TC-07 | Danh sách sách | Thành viên xem được danh sách sách. | Thành viên xem được danh sách sách sau khi đăng nhập. | Pass |  | - |
-| TC-08 | Cập nhật trạng thái sách | BOOK001 chuyển từ Có sẵn sang Đang mượn ngay lập tức. | Sau khi Hoàng Cá Biệt mượn BOOK001, trạng thái BOOK001 đổi sang Đang mượn. | Pass |  | - |
-| TC-09 | Tìm kiếm sách | Hiển thị sách Lập trình Flutter cơ bản - BOOK001. | Tìm Lập trình Flutter cơ bản hiển thị đúng BOOK001. | Pass |  | - |
-| TC-10 | Tìm kiếm sách | Hiển thị các sách của Nguyễn Minh Đức, gồm BOOK001 và BOOK009. | Tìm Nguyễn Minh Đức hiển thị BOOK001 và BOOK009. | Pass |  | - |
-| TC-11 | Tìm kiếm sách | Hai lần tìm cho kết quả tương đương, có BOOK001. | Tìm flutter chữ thường vẫn hiển thị Lập trình Flutter cơ bản. | Pass |  | - |
-| TC-12 | Tìm kiếm sách | Hiển thị thông báo Không tìm thấy sách. | Tìm xyz123 hiển thị Không tìm thấy sách nào. | Pass |  | - |
-| TC-13 | Lọc sách | Chỉ hiển thị các sách thuộc thể loại Công nghệ. | Lọc Công nghệ hiển thị các sách thuộc thể loại Công nghệ. | Pass |  | - |
-| TC-14 | Mượn sách | Hiển thị Mượn sách thành công và tạo phiếu mượn. | Hoàng Cá Biệt mượn BOOK001 thành công, hệ thống hiển thị Mượn sách thành công. | Pass || - |
-| TC-15 | Mượn sách | Hệ thống không cho mượn sách đang được mượn. | Thử mượn sách đang mượn, hệ thống không cho mượn. | Pass |  | - |
-| TC-16 | Mượn sách | Hệ thống không cho mượn sách không có sẵn. | Thử mượn sách không có sẵn/thất lạc, hệ thống không cho mượn. | Pass | | - |
-| TC-17 | Mượn sách | Từ chối mượn và hiển thị đúng lý do: thành viên đang bị tạm ngưng. | Thành viên tạm ngưng bị từ chối mượn nhưng hệ thống hiển thị sai thông báo: Thành viên đã hết hạn. Không thể mượn sách. | Fail | Bug01.jpg | BUG-01 |
-| TC-18 | Mượn sách | Từ chối mượn và hiển thị lý do thành viên đã hết hạn. | Thành viên hết hạn bị từ chối mượn và hệ thống hiển thị Thành viên đã hết hạn. Không thể mượn sách. | Pass |  | - |
-| TC-19 | Giới hạn mượn | Sách thứ 4 bị từ chối vì giới hạn tối đa 3 sách. | Nguyễn Học Bá vẫn có thể mượn 4 sách cùng lúc: BR006, BR007, BR008, BR012. | Fail | Bug02.jpg | BUG-02 |
-| TC-20 | Hạn trả | Hạn trả = ngày mượn + 14 ngày. | Phiếu mượn mới có ngày mượn 27/05/2026 và hạn trả 10/06/2026, đúng +14 ngày. | Pass |  | - |
-| TC-21 | Trả sách | Hiển thị Trả sách thành công, phiếu chuyển Đã trả, sách về Có sẵn. | Hệ thống hiển thị Trả sách thành công; phiếu chuyển sang Đã trả. | Pass | | - |
-| TC-22 | Trả sách | Phiếu Đã trả không có nút Trả sách để thao tác lại. | Phiếu đã trả chỉ hiển thị trạng thái Đã trả, không có nút Trả sách để thao tác lại. | Pass |  | - |
-| TC-23 | Trả sách quá hạn | Trả sách thành công và hiển thị cảnh báo quá hạn. | Trả BR001 quá hạn nhưng hệ thống chỉ hiển thị Trả sách thành công, không có cảnh báo quá hạn. | Fail | Bug03.jpg | BUG-03 |
-| TC-24 | Kiểm tra quá hạn | Phiếu quá hạn được đánh dấu Quá hạn, hệ thống thông báo số phiếu đã cập nhật. | Thủ thư nhấn Kiểm tra sách quá hạn; hệ thống báo Đã cập nhật: 1 phiếu mượn quá hạn và BR003 chuyển Quá hạn. | Pass |  | - |
-| TC-25 | Phiếu quá hạn | Chỉ hiển thị phiếu quá hạn của chính thành viên đang đăng nhập. | Hoàng Cá Biệt chỉ thấy phiếu quá hạn BR003 của chính mình. | Pass | | - |
-| TC-26 | Quản lý thành viên | Tạo thành viên mới thành công và hiển thị trong danh sách. | Nhập email hợp lệ thanh.khong@email.com nhưng hệ thống báo Email không hợp lệ. | Fail | Bug04.jpg| BUG-04 |
-| TC-27 | Quản lý thành viên | Từ chối tạo thành viên, hiển thị lỗi email không hợp lệ. | Hệ thống vẫn tạo thành viên mới với email sai định dạng user@domain và user1@domain. | Fail | Bug05.jpg | BUG-05 |
-| TC-28 | Quản lý thành viên | Không tạo thành viên mới, báo email đã tồn tại. | Email đã tồn tại ba.nguyen@email.com bị từ chối, không tạo thành viên mới. | Pass | | - |
-| TC-29 | Phân quyền thành viên | Thành viên không thấy hoặc không truy cập được chức năng Thành viên. | Tài khoản thành viên không hiển thị/không truy cập được tab Thành viên. | Pass |  | - |
-| TC-30 | Phiếu mượn | Hiển thị đầy đủ các phiếu mượn seed BR001 đến BR005. | Thủ thư thấy đầy đủ các phiếu seed BR001 đến BR005. | Pass | | - |
-| TC-31 | Phiếu mượn | Hiển thị phiếu của Nguyễn Học Bá như BR001 và BR004. | Tra cứu MEM002 hiển thị các phiếu của Nguyễn Học Bá gồm BR001 và BR004. | Pass |  | - |
-| TC-32 | Phân quyền phiếu mượn | Hệ thống từ chối hoặc không hiển thị phiếu của thành viên khác. | Đăng nhập Trần Dựa Dẫm nhưng vẫn tra cứu và xem được phiếu của MEM002. | Fail | Bug06.jpg | BUG-06 |
-| TC-33 | Khôi phục dữ liệu | Dữ liệu sách, phiếu mượn và thành viên trở về seed data ban đầu. | Chưa thực thi/không có minh chứng thực thi. | Pass | - | - |
-| TC-34 | Phân quyền | Thành viên không thấy nút khôi phục dữ liệu. | Đăng nhập thành viên không thấy nút khôi phục dữ liệu trên AppBar. | Pass | | - |
-| TC-35 | Chuyển ngôn ngữ | Toàn bộ nhãn giao diện và danh mục được chuyển sang tiếng Anh. | Chọn EN nhưng dòng Available categories vẫn hiển thị danh mục tiếng Việt: Công nghệ, Giáo dục, Kinh tế, Kỹ năng mềm, Quản trị, Văn học. | Fail | Bug07.jpg | BUG-07 |
-| TC-36 | Chuyển ngôn ngữ | Giao diện chuyển về tiếng Việt đầy đủ. | Chọn VI, giao diện chuyển về tiếng Việt. | Pass | | - |
-| TC-37 | Tìm kiếm sách | Hiển thị các sách của Nguyễn Minh Đức. | Nhập NGUYỄN MINH ĐỨC vẫn hiển thị các sách của Nguyễn Minh Đức. | Pass | | - |
-| TC-38 | Tìm kiếm sách | Hệ thống bỏ qua khoảng trắng thừa và hiển thị sách phù hợp. | Nhập từ khóa có khoảng trắng đầu, hệ thống hiển thị Không tìm thấy sách nào. | Fail | Bug08.jpg | BUG-08 |
-| TC-39 | Lọc sách | Hiển thị sách thuộc thể loại Công nghệ. | Nhập Công nghệ trong ô lọc hiển thị các sách thuộc thể loại Công nghệ. | Pass |  | - |
-| TC-40 | Phân quyền | Không hiển thị tab Thành viên cho tài khoản thành viên. | Đăng nhập thành viên, thanh điều hướng không hiển thị tab Thành viên. | Pass || - |
+| TC-01 | Login | Navigate to the main page; AppBar shows Nguyễn Thủ Thư (Librarian). | Librarian login succeeded. AppBar shows Nguyễn Thủ Thư (Librarian). | Pass |  | - |
+| TC-02 | Login | Navigate to the main page; AppBar shows Nguyễn Học Bá (Member). | Member login succeeded. AppBar shows Nguyễn Học Bá (Member). | Pass |  | - |
+| TC-03 | Login | Display the error “Member not found.” | The system displays “Member not found.” | Pass |  | - |
+| TC-04 | Login | Display the error “Incorrect password.” | The system displays “Incorrect password.” | Pass |  | - |
+| TC-05 | Login | Display the error “Please enter email and password.” | The system displays “Please enter email and password.” | Pass |  | - |
+| TC-06 | Book List | BOOK001 shows title, author, category, publication year, and status. | Librarian can view the book list; BOOK001 shows title, author, category, year, and Available status. | Pass |  | - |
+| TC-07 | Book List | Member can view the book list. | Member can view the book list after logging in. | Pass |  | - |
+| TC-08 | Book Status Update | BOOK001 changes from Available to Borrowed immediately. | After Hoàng Cá Biệt borrows BOOK001, BOOK001 status changes to Borrowed. | Pass |  | - |
+| TC-09 | Search Books | Display “Basic Flutter Programming” — BOOK001. | Searching for “Basic Flutter Programming” displays BOOK001 correctly. | Pass |  | - |
+| TC-10 | Search Books | Display books by Nguyễn Minh Đức, including BOOK001 and BOOK009. | Searching for Nguyễn Minh Đức displays BOOK001 and BOOK009. | Pass |  | - |
+| TC-11 | Search Books | Both searches return equivalent results, including BOOK001. | Searching for lowercase “flutter” still displays “Basic Flutter Programming.” | Pass |  | - |
+| TC-12 | Search Books | Display “No books found.” | Searching for xyz123 displays “No books found.” | Pass |  | - |
+| TC-13 | Filter Books | Only books in the Technology category are displayed. | Filtering by Technology displays books in the Technology category. | Pass |  | - |
+| TC-14 | Borrow Book | Display “Book borrowed successfully” and create a borrow record. | Hoàng Cá Biệt borrows BOOK001 successfully; the system displays “Book borrowed successfully.” | Pass |  | - |
+| TC-15 | Borrow Book | The system does not allow borrowing a book that is already borrowed. | When trying to borrow an already borrowed book, the system rejects the request. | Pass |  | - |
+| TC-16 | Borrow Book | The system does not allow borrowing an unavailable book. | When trying to borrow an unavailable/lost book, the system rejects the request. | Pass |  | - |
+| TC-17 | Borrow Book | Reject borrowing and display the correct reason: the member is suspended. | The suspended member is rejected, but the system shows the wrong message: “Member has expired. Cannot borrow books.” | Fail | Bug01.jpg | BUG-01 |
+| TC-18 | Borrow Book | Reject borrowing and display the reason that the member has expired. | The expired member is rejected and the system displays “Member has expired. Cannot borrow books.” | Pass |  | - |
+| TC-19 | Borrow Limit | The 4th book is rejected because the maximum limit is 3 books. | Nguyễn Học Bá can still borrow 4 books at the same time: BR006, BR007, BR008, BR012. | Fail | Bug02.jpg | BUG-02 |
+| TC-20 | Due Date | Due date = borrow date + 14 days. | The new borrow record has borrow date 27/05/2026 and due date 10/06/2026, correctly +14 days. | Pass |  | - |
+| TC-21 | Return Book | Display “Book returned successfully”; the record becomes Returned and the book becomes Available. | The system displays “Book returned successfully”; the record changes to Returned. | Pass |  | - |
+| TC-22 | Return Book | Returned records do not have the Return button again. | Returned records only show the Returned status and do not have a Return button. | Pass |  | - |
+| TC-23 | Overdue Return | Return succeeds and an overdue warning is displayed. | BR001 is returned late, but the system only displays “Book returned successfully” without any overdue warning. | Fail | Bug03.jpg | BUG-03 |
+| TC-24 | Overdue Check | Overdue records are marked as Overdue, and the number of updated records is displayed. | Librarian clicks Check Overdue Books; the system reports 1 overdue record updated and BR003 becomes Overdue. | Pass |  | - |
+| TC-25 | Overdue Records | Only the logged-in member’s overdue records are displayed. | Hoàng Cá Biệt only sees their own overdue record BR003. | Pass |  | - |
+| TC-26 | Member Management | A new member is created successfully and appears in the list. | A valid email `thanh.khong@email.com` is entered, but the system shows “Invalid email.” | Fail | Bug04.jpg | BUG-04 |
+| TC-27 | Member Management | Reject member creation and display an invalid email error. | The system still creates a new member with invalid email formats `user@domain` and `user1@domain`. | Fail | Bug05.jpg | BUG-05 |
+| TC-28 | Member Management | Do not create a new member; report that the email already exists. | Existing email `ba.nguyen@email.com` is rejected, and no new member is created. | Pass |  | - |
+| TC-29 | Member Permission | Member cannot see or access the Members function. | Member account cannot see/access the Members tab. | Pass |  | - |
+| TC-30 | Borrow Records | Display all seed borrow records BR001 to BR005. | Librarian can see all seed records BR001 to BR005. | Pass |  | - |
+| TC-31 | Borrow Records | Display Nguyễn Học Bá’s records such as BR001 and BR004. | Looking up MEM002 displays Nguyễn Học Bá’s records, including BR001 and BR004. | Pass |  | - |
+| TC-32 | Borrow Record Permission | The system rejects or hides another member’s borrow records. | Logged in as Trần Dựa Dẫm, but the user can still look up and view records of MEM002. | Fail | Bug06.jpg | BUG-06 |
+| TC-33 | Data Reset | Books, borrow records, and members return to the original seed data. | Not executed / no execution evidence. | Not Run | - | - |
+| TC-34 | Permission | Member cannot see the data reset button. | Logged in as a member; the reset data button is not shown on the AppBar. | Pass |  | - |
+| TC-35 | Language Switching | All UI labels and categories are switched to English. | EN is selected, but Available categories still shows Vietnamese categories: Công nghệ, Giáo dục, Kinh tế, Kỹ năng mềm, Quản trị, Văn học. | Fail | Bug07.jpg | BUG-07 |
+| TC-36 | Language Switching | The interface switches fully back to Vietnamese. | VI is selected, and the interface switches back to Vietnamese. | Pass |  | - |
+| TC-37 | Search Books | Display books by Nguyễn Minh Đức. | Entering NGUYỄN MINH ĐỨC still displays books by Nguyễn Minh Đức. | Pass |  | - |
+| TC-38 | Search Books | The system ignores extra spaces and displays matching books. | Entering a keyword with a leading space displays “No books found.” | Fail | Bug08.jpg | BUG-08 |
+| TC-39 | Filter Books | Display books in the Technology category. | Entering Technology in the category filter displays books in the Technology category. | Pass |  | - |
+| TC-40 | Permission | The Members tab is not shown for member accounts. | Logged in as a member; the bottom navigation bar does not show the Members tab. | Pass | | - |
 
 ---
 
-## 2. Tổng hợp kết quả
+## 2. Result Summary
 
-| Chỉ số | Giá trị |
+| Metric | Value |
 |---|---:|
-| Tổng số test case | 40 |
-| Pass | 32 |
+| Total test cases | 40 |
+| Pass | 31 |
 | Fail | 8 |
 | Blocked | 0 |
-| **Tỷ lệ Pass** | **80%** |
-| Số bug phát hiện | 8 |
+| **Pass Rate** | **80%** |
+| Bugs found | 8 |
 
-### Kết quả theo nhóm chức năng
+### Results by Feature Group
 
-| Nhóm chức năng | Tổng TC | Pass | Fail | Not Run | Đánh giá |
+| Feature Group | Total TC | Pass | Fail | Not Run | Evaluation |
 |---|---:|---:|---:|---:|---|
-| Đăng nhập | 5 | 5 | 0 | 0 | Ổn định |
-| Danh sách sách / tìm kiếm / lọc | 9 | 8 | 1 | 0 | Cơ bản tốt, lỗi trim khoảng trắng |
-| Mượn sách | 7 | 5 | 2 | 0 | Có lỗi nghiêm trọng về giới hạn mượn và thông báo trạng thái |
-| Trả sách / quá hạn | 5 | 4 | 1 | 0 | Có lỗi thiếu cảnh báo quá hạn khi trả |
-| Quản lý thành viên | 4 | 2 | 2 | 0 | Validate email chưa đúng |
-| Phiếu mượn / phân quyền | 4 | 3 | 1 | 0 | Có lỗi bảo mật phân quyền phiếu |
-| UI / ngôn ngữ / reset | 6 | 5 | 1 | 0 | Dịch chưa hoàn chỉnh, TC-33 chưa chạy |
+| Login | 5 | 5 | 0 | 0 | Stable |
+| Book list / search / filter | 9 | 8 | 1 | 0 | Basic functions work well; search does not trim leading/trailing spaces. |
+| Borrow Book | 7 | 5 | 2 | 0 | Serious issues with borrow limit and member status message. |
+| Return Book / Overdue | 5 | 4 | 1 | 0 | Missing overdue warning when returning an overdue book. |
+| Member Management | 4 | 2 | 2 | 0 | Email validation is incorrect. |
+| Borrow Records / Permission | 4 | 3 | 1 | 0 | Security issue in borrow-record permission. |
+| UI / Language / Reset | 6 | 4 | 1 | 0 | Language switching is incomplete; TC-33 was not executed. |

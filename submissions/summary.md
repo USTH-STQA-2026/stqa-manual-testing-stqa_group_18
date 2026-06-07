@@ -1,47 +1,46 @@
+# Test Summary
 
-# Test Summary — Báo cáo tổng hợp kiểm thử
+## 1. Group Information
 
-## 1. Thông tin nhóm
-
-| Mục | Thông tin |
+| Item | Information |
 |---|---|
-| **Nhóm** | `<!Group 18>` |
-| **Lớp** | `<!ICT>` |
-| **Ngày báo cáo** | 27/05/2026 |
-| **Hệ thống kiểm thử** | https://stqa.rbc.vn — v1.0 |
-| **Phạm vi** | Manual Black-box Testing dựa trên SRS |
+| **Group** | `<!Group 18>` |
+| **Class** | `<!ICT>` |
+| **Report Date** | 27/05/2026 |
+| **System Under Test** | https://stqa.rbc.vn — v1.0 |
+| **Scope** | Manual black-box testing based on the SRS |
 
 ---
 
-## 2. Tổng quan kết quả
+## 2. Result Overview
 
-| Chỉ số | Giá trị |
+| Metric | Value |
 |---|---:|
-| Tổng số test case | 40 |
+| Total test cases | 40 |
 | Pass | 32 |
 | Fail | 8 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Tỷ lệ Pass** | **80%** |
-| **Số bug phát hiện** | **8** |
+| **Pass Rate** | **80%** |
+| **Bugs Found** | **8** |
 
-> Ghi chú: TC-33 chưa có minh chứng thực thi nên để trạng thái **Not Run**. Nếu nhóm chạy bổ sung và Pass, tỷ lệ Pass sẽ tăng.
+> Note: TC-33 has no execution evidence, so it is marked as **Not Run**. If the team executes it later and it passes, the pass rate will increase.
 
-### Phân bổ theo nhóm chức năng
+### Distribution by Feature Group
 
-| Nhóm chức năng | TC | Pass | Fail | Not Run | Bug | Đánh giá |
+| Feature Group | TC | Pass | Fail | Not Run | Bugs | Evaluation |
 |---|---:|---:|---:|---:|---:|---|
-| Đăng nhập | 5 | 5 | 0 | 0 | 0 | Hoạt động ổn định |
-| Danh sách sách, tìm kiếm, lọc | 9 | 8 | 1 | 0 | 1 | Tìm kiếm cơ bản tốt, lỗi trim khoảng trắng |
-| Mượn sách | 7 | 5 | 2 | 0 | 2 | Có lỗi nghiệp vụ quan trọng về giới hạn mượn |
-| Trả sách và quá hạn | 5 | 4 | 1 | 0 | 1 | Còn thiếu cảnh báo khi trả quá hạn |
-| Quản lý thành viên | 4 | 2 | 2 | 0 | 2 | Validate email chưa nhất quán |
-| Phiếu mượn và phân quyền | 4 | 3 | 1 | 0 | 1 | Có lỗi phân quyền nghiêm trọng |
-| UI, ngôn ngữ, reset | 6 | 5 | 1 | 0 | 1 | Chuyển ngôn ngữ chưa hoàn chỉnh |
+| Login | 5 | 5 | 0 | 0 | 0 | Stable |
+| Book list, search, and filter | 9 | 8 | 1 | 0 | 1 | Basic search works well, but leading/trailing spaces are not handled. |
+| Borrow Book | 7 | 5 | 2 | 0 | 2 | Important business-rule issue with the borrow limit. |
+| Return Book and Overdue Handling | 5 | 4 | 1 | 0 | 1 | Missing warning when returning an overdue book. |
+| Member Management | 4 | 2 | 2 | 0 | 2 | Email validation is inconsistent. |
+| Borrow Records and Permission | 4 | 3 | 1 | 0 | 1 | Serious permission issue. |
+| UI, language, and reset | 6 | 4 | 1 | 1 | 0 | Language switching is incomplete; TC-33 was not executed. |
 
-### Phân bổ bug theo mức độ
+### Bug Distribution by Severity
 
-| Mức độ | Số lượng | Bug IDs |
+| Severity | Quantity | Bug IDs |
 |---|---:|---|
 | High | 2 | BUG-02, BUG-06 |
 | Medium | 4 | BUG-01, BUG-03, BUG-04, BUG-05 |
@@ -49,71 +48,71 @@
 
 ---
 
-## 3. Kỹ thuật thiết kế đã sử dụng
+## 3. Test Design Techniques Used
 
-| Kỹ thuật | Áp dụng cho REQ nào? | Số TC sử dụng | Giải thích cách áp dụng |
+| Technique | Applied Requirements | Number of TCs | Explanation |
 |---|---|---:|---|
-| EP — Equivalence Partitioning | REQ-01, REQ-03, REQ-07 | Nhiều TC | Chia input thành hợp lệ/không hợp lệ: email tồn tại/không tồn tại, mật khẩu đúng/sai, từ khóa tồn tại/không tồn tại, email hợp lệ/sai định dạng/trùng |
-| BVA — Boundary Value Analysis | REQ-04 | TC-19, TC-20 | Kiểm tra giới hạn tối đa 3 sách và hạn trả 14 ngày |
-| Decision Table | REQ-04 | TC-14 → TC-18 | Kết hợp điều kiện trạng thái thành viên, trạng thái sách, số sách đang mượn để xác định cho mượn/từ chối |
-| Access Control Testing | REQ-07, REQ-08 | TC-25, TC-29 → TC-32, TC-34, TC-40 | Kiểm tra thủ thư và thành viên có quyền truy cập khác nhau |
-| State-based Testing | REQ-02, REQ-05, REQ-06 | TC-08, TC-21, TC-24, TC-33 | Kiểm tra chuyển trạng thái sách/phiếu sau mượn, trả, kiểm tra quá hạn, reset |
-| Negative / Robustness Testing | REQ-01, REQ-03, REQ-04, REQ-07 | Nhiều TC | Kiểm tra dữ liệu sai, trường hợp bị từ chối, khoảng trắng thừa, email sai format |
+| EP — Equivalence Partitioning | REQ-01, REQ-03, REQ-07 | Many TCs | Inputs were divided into valid/invalid groups: existing/non-existing email, correct/incorrect password, existing/non-existing keyword, valid/invalid/duplicate email. |
+| BVA — Boundary Value Analysis | REQ-04 | TC-19, TC-20 | Checked the maximum 3-book borrowing limit and the 14-day due date boundary. |
+| Decision Table | REQ-04 | TC-14 → TC-18 | Combined member status, book status, and number of borrowed books to decide whether borrowing should be allowed or rejected. |
+| Access Control Testing | REQ-07, REQ-08 | TC-25, TC-29 → TC-32, TC-34, TC-40 | Checked that Librarian and Member accounts have different access rights. |
+| State-based Testing | REQ-02, REQ-05, REQ-06 | TC-08, TC-21, TC-24, TC-33 | Checked state transitions after borrowing, returning, overdue checking, and data reset. |
+| Negative / Robustness Testing | REQ-01, REQ-03, REQ-04, REQ-07 | Many TCs | Tested invalid data, rejected cases, extra spaces, and invalid email formats. |
 
 ---
 
-## 4. Phân tích chất lượng phần mềm
+## 4. Software Quality Analysis
 
-### 4.1. Điểm mạnh
+### 4.1 Strengths
 
-- Chức năng đăng nhập hoạt động đúng với tài khoản hợp lệ, sai email, sai mật khẩu và bỏ trống input.
-- Danh sách sách hiển thị rõ ràng, có đủ thông tin cơ bản như tên sách, tác giả, thể loại, năm xuất bản và trạng thái.
-- Tìm kiếm cơ bản theo tên sách/tác giả và không phân biệt hoa/thường hoạt động tốt.
-- Chức năng mượn/trả cơ bản có thể thao tác được, trạng thái sách/phiếu được cập nhật sau thao tác.
-- Thủ thư có thể kiểm tra quá hạn và hệ thống đánh dấu được phiếu quá hạn.
-- Một số phân quyền cơ bản đúng: member không thấy tab Thành viên, không thấy nút khôi phục dữ liệu.
+- The login function works correctly for valid accounts, wrong email, wrong password, and empty input fields.
+- The book list is displayed clearly with basic information such as title, author, category, publication year, and status.
+- Basic search by book title/author and case-insensitive search work well.
+- Basic borrow/return operations can be performed, and book/record status is updated after actions.
+- The Librarian can check overdue books, and the system can mark overdue records.
+- Some basic permissions work correctly: members cannot see the Members tab and cannot see the reset data button.
 
-### 4.2. Điểm yếu
+### 4.2 Weaknesses
 
-- Lỗi nghiệp vụ nghiêm trọng: hệ thống cho phép mượn vượt quá giới hạn 3 sách/thành viên.
-- Lỗi phân quyền nghiêm trọng: thành viên có thể tra cứu phiếu mượn của thành viên khác.
-- Thông báo lỗi chưa chính xác khi thành viên tạm ngưng bị từ chối mượn sách.
-- Trả sách quá hạn không hiển thị cảnh báo quá hạn như yêu cầu.
-- Validate email trong chức năng thêm thành viên không nhất quán: vừa từ chối email hợp lệ, vừa cho phép email sai định dạng.
-- Chuyển ngôn ngữ EN chưa đầy đủ, danh mục thể loại vẫn hiển thị tiếng Việt.
-- Tìm kiếm chưa xử lý khoảng trắng thừa ở đầu/cuối từ khóa.
+- Serious business-rule bug: the system allows a member to borrow more than 3 books.
+- Serious permission bug: a member can look up another member’s borrow records.
+- The error message is inaccurate when a suspended member is rejected from borrowing.
+- Returning an overdue book does not display the required overdue warning.
+- Email validation in member management is inconsistent: the system rejects a valid email but accepts invalid email formats.
+- English language switching is incomplete because some categories are still displayed in Vietnamese.
+- Search does not handle leading/trailing spaces in keywords.
 
 ---
 
-## 5. Đề xuất ưu tiên sửa lỗi
+## 5. Recommended Bug Fix Priority
 
-| Thứ tự | Bug | Mức độ | Lý do ưu tiên |
+| Priority | Bug | Severity | Reason |
 |---:|---|---|---|
-| 1 | BUG-06 | High | Liên quan phân quyền và quyền riêng tư; thành viên xem được phiếu người khác |
-| 2 | BUG-02 | High | Vi phạm quy tắc nghiệp vụ cốt lõi: tối đa 3 sách/thành viên |
-| 3 | BUG-03 | Medium | Trả sách quá hạn không cảnh báo, làm mất ý nghĩa xử lý quá hạn |
-| 4 | BUG-01 | Medium | Thông báo sai lý do khiến thủ thư/người dùng hiểu nhầm trạng thái thành viên |
-| 5 | BUG-04 | Medium | Không thêm được thành viên với email hợp lệ, ảnh hưởng nghiệp vụ quản lý thành viên |
-| 6 | BUG-05 | Medium | Cho phép lưu email sai định dạng, gây dữ liệu bẩn |
-| 7 | BUG-07 | Low | Lỗi trải nghiệm tìm kiếm khi nhập khoảng trắng thừa |
-| 8 | BUG-08 | Low | Giao diện tiếng Anh chưa dịch hoàn chỉnh |
+| 1 | BUG-06 | High | Related to permission and privacy; members can view other members’ borrow records. |
+| 2 | BUG-02 | High | Violates a core business rule: maximum 3 books per member. |
+| 3 | BUG-03 | Medium | Overdue returns do not show a warning, reducing the value of overdue handling. |
+| 4 | BUG-01 | Medium | Wrong error message can confuse users and librarians about member status. |
+| 5 | BUG-04 | Medium | Librarian cannot add a member with a valid email, affecting member management. |
+| 6 | BUG-05 | Medium | Invalid email formats can be saved, causing dirty data. |
+| 7 | BUG-07 | Low | Search experience issue when users enter extra spaces. |
+| 8 | BUG-08 | Low | English UI is not fully translated. |
 
 ---
 
-## 6. Kết luận
+## 6. Conclusion
 
-Hệ thống có nhiều chức năng cơ bản hoạt động tốt, đặc biệt là đăng nhập, hiển thị danh sách sách, tìm kiếm cơ bản và thao tác mượn/trả thông thường. Tuy nhiên, hệ thống **chưa sẵn sàng phát hành** nếu dùng trong môi trường thật vì còn ít nhất 2 lỗi mức High: cho phép mượn vượt giới hạn 3 sách và thành viên có thể xem phiếu mượn của người khác. Hai lỗi này ảnh hưởng trực tiếp đến nghiệp vụ và bảo mật/phân quyền.
+The system has many basic functions working correctly, especially login, book list display, basic search, and normal borrow/return operations. However, the system is **not ready for release** in a real environment because there are at least 2 High-severity bugs: the system allows borrowing more than 3 books, and a member can view another member’s borrow records. These issues directly affect business rules, security, and access control.
 
-Đề xuất sửa các lỗi High trước, sau đó sửa các lỗi Medium liên quan đến quá hạn và quản lý thành viên. Sau khi sửa, cần chạy regression test lại toàn bộ TC-01 → TC-40, đặc biệt là TC-17, TC-19, TC-23, TC-26, TC-27 và TC-32.
+The team should fix the High-severity bugs first, then fix the Medium-severity issues related to overdue handling and member management. After the fixes, regression testing should be performed for all TC-01 → TC-40, especially TC-17, TC-19, TC-23, TC-26, TC-27, and TC-32.
 
 ---
 
-## 7. Bài học rút ra
+## 7. Lessons Learned
 
-- Expected Result phải viết cụ thể theo SRS, không viết chung chung như “hệ thống hoạt động bình thường”.
-- Các lỗi quan trọng thường nằm ở boundary và phân quyền, ví dụ giới hạn 3 sách và tra cứu phiếu của người khác.
-- Negative testing rất quan trọng vì nhiều bug xuất hiện khi nhập dữ liệu sai hoặc thao tác ngoài luồng chính.
-- Khi ghi bug report, cần có bước tái hiện rõ ràng, expected vs actual và minh chứng ảnh chụp màn hình.
+- Expected Results must be written clearly according to the SRS, not generally as “the system works normally.”
+- Important bugs often appear at boundaries and permission checks, such as the 3-book limit and lookup of another member’s records.
+- Negative testing is important because many bugs appear when users enter invalid data or perform actions outside the main flow.
+- A bug report should include clear reproduction steps, expected result, actual result, and screenshot evidence.
 
-## 8. Khai báo sử dụng AI
-- Nhóm đã dùng chat GPT để sửa cú pháp .
+## 8. Using AI
+- The team used ChatGPT to correct the syntax.
