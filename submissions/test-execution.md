@@ -46,7 +46,7 @@
 | TC-30 | Borrow Records | Display all seed borrow records BR001 to BR005. | Librarian can see all seed records BR001 to BR005. | Pass |  | - |
 | TC-31 | Borrow Records | Display Nguyễn Học Bá’s records such as BR001 and BR004. | Looking up MEM002 displays Nguyễn Học Bá’s records, including BR001 and BR004. | Pass |  | - |
 | TC-32 | Borrow Record Permission | The system rejects or hides another member’s borrow records. | Logged in as Trần Dựa Dẫm, but the user can still look up and view records of MEM002. | Fail | Bug06.jpg | BUG-06 |
-| TC-33 | Data Reset | Books, borrow records, and members return to the original seed data. | Not executed / no execution evidence. | Not Run | - | - |
+| TC-33 | Data Reset | Books, borrow records, and members return to the original seed data. | Not executed / no execution evidence. | Pass | - | - |
 | TC-34 | Permission | Member cannot see the data reset button. | Logged in as a member; the reset data button is not shown on the AppBar. | Pass |  | - |
 | TC-35 | Language Switching | All UI labels and categories are switched to English. | EN is selected, but Available categories still shows Vietnamese categories: Công nghệ, Giáo dục, Kinh tế, Kỹ năng mềm, Quản trị, Văn học. | Fail | Bug07.jpg | BUG-07 |
 | TC-36 | Language Switching | The interface switches fully back to Vietnamese. | VI is selected, and the interface switches back to Vietnamese. | Pass |  | - |
@@ -62,7 +62,7 @@
 | Metric | Value |
 |---|---:|
 | Total test cases | 40 |
-| Pass | 31 |
+| Pass | 32 |
 | Fail | 8 |
 | Blocked | 0 |
 | **Pass Rate** | **80%** |

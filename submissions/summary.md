@@ -36,7 +36,7 @@
 | Return Book and Overdue Handling | 5 | 4 | 1 | 0 | 1 | Missing warning when returning an overdue book. |
 | Member Management | 4 | 2 | 2 | 0 | 2 | Email validation is inconsistent. |
 | Borrow Records and Permission | 4 | 3 | 1 | 0 | 1 | Serious permission issue. |
-| UI, language, and reset | 6 | 4 | 1 | 1 | 0 | Language switching is incomplete; TC-33 was not executed. |
+| UI, language, and reset | 6 | 4 | 1 | 0| 1 | Language switching is incomplete; TC-33 was not executed. |
 
 ### Bug Distribution by Severity
 
