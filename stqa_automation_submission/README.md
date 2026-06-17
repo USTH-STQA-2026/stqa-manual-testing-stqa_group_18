@@ -16,7 +16,6 @@ The project uses **Playwright + Python** to test the Library Book Borrowing Syst
 |---|---|
 | **Team name** | Group_18 |
 | **Class** | ICT |
-<<<<<<< HEAD
 | **Semester** | 2025_2026 |
 
 | # | Student ID | Full name | Role |
@@ -24,16 +23,6 @@ The project uses **Playwright + Python** to test the Library Book Borrowing Syst
 | 1 |23BA14260|Trần Quang Thành| Team leader |
 | 2 |23ba14253 |Phạm Duy Đức Tâm | Member |
 | 3 |2411065| Lê Vân| Member |
-=======
-| **Semester** | HK2-2025-2026 |
-
-| # | Student ID | Full name | Role |
-|---|---|---|---|
-| 1 | |Trần Quang Thành | Team leader |
-| 2 | | Phạm Duy Đức Tâm| Member |
-| 3 | |Lê Vân  | Member |
->>>>>>> 3f6a5598c1fe01533ce8dadf43048af722e60cab
-| 4 | | | Member |
 
 ---
 
