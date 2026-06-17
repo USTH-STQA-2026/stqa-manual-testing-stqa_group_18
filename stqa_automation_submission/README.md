@@ -14,15 +14,15 @@ The project uses **Playwright + Python** to test the Library Book Borrowing Syst
 
 | Field | Information |
 |---|---|
-| **Team name** | `<!-- Example: Team 1 -->` |
-| **Class** | `<!-- Example: SE001.P11 -->` |
-| **Semester** | `<!-- Example: Spring 2025-2026 -->` |
+| **Team name** | Group_18 |
+| **Class** | ICT |
+| **Semester** | HK2-2025-2026 |
 
 | # | Student ID | Full name | Role |
 |---|---|---|---|
-| 1 | | | Team leader |
-| 2 | | | Member |
-| 3 | | | Member |
+| 1 | |Trần Quang Thành | Team leader |
+| 2 | | Phạm Duy Đức Tâm| Member |
+| 3 | |Lê Vân  | Member |
 | 4 | | | Member |
 
 ---
